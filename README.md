@@ -14,7 +14,7 @@ Files
    - [`JMETER_HOME`](jmeter_headless_mode.bat) — path to your JMeter installation.
    - [`BASE_RESULTS_DIR`](jmeter_headless_mode.bat) — directory to store .jtl result files.
    - [`BASE_REPORT_DIR`](jmeter_headless_mode.bat) — directory to store generated HTML reports.
-2. Save changes and run the script by double-clicking or executing in cmd: `c:\path\to\jmeter_headless_mode.bat c:\path\to\test_plan.jmx`
+2. Save changes and run the script by executing in cmd: `c:\path\to\jmeter_headless_mode.bat c:\path\to\test_plan.jmx`
 3. The script generates:
 
    - [`RESULTS_FILE`](jmeter_headless_mode.bat) — results\_%RUN_ID%.jtl
