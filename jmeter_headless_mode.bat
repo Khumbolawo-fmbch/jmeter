@@ -9,20 +9,8 @@ set TEST_PLAN=C:\Users\MW50001125\Downloads\apache-jmeter-5.6.3\apache-jmeter-5.
 set BASE_RESULTS_DIR=C:\JMeterTests\results
 set BASE_REPORT_DIR=C:\JMeterTests\reports
 
-REM --- CREATE TIMESTAMP ---
-for /f "tokens=1-4 delims=/ " %%a in ("%date%") do (
-    set DATESTAMP=%%d-%%b-%%c
-)
-for /f "tokens=1-2 delims=: " %%a in ("%time%") do (
-    set TIMESTAMP=%%a%%b
-)
-
-set RUN_ID=%DATESTAMP%_%TIMESTAMP%
-
-REM --- REMOVE INVALID CHARACTERS ---
-set RUN_ID=%RUN_ID::=%
-set RUN_ID=%RUN_ID:/=%
-set RUN_ID=%RUN_ID: =%
+REM --- GET A LOCALE-INDEPENDENT TIMESTAMP (dd-MM-yyyy_HHmm) USING POWERSHELL ---
+for /f "usebackq delims=" %%I in (`powershell -NoProfile -Command "Get-Date -Format 'dd-MM-yyyy_HHmm'"`) do set "RUN_ID=%%I"
 
 REM --- BUILD FILE/FOLDER PATHS ---
 set RESULTS_FILE=%BASE_RESULTS_DIR%\results_%RUN_ID%.jtl
