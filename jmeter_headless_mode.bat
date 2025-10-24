@@ -1,13 +1,21 @@
 @echo off
 REM ==========================================
-REM JMeter Headless Test Runner Script (with Timestamps)
+REM JMeter Headless Test Runner Script (with Arguments)
 REM ==========================================
 
 REM --- CONFIGURATION ---
 set JMETER_HOME=C:\Users\MW50001125\Downloads\apache-jmeter-5.6.3\apache-jmeter-5.6.3\
-set TEST_PLAN=C:\Users\MW50001125\Downloads\apache-jmeter-5.6.3\apache-jmeter-5.6.3\bin\test-plans\fx-allocation-system\Re use fx allocation application.jmx
 set BASE_RESULTS_DIR=C:\JMeterTests\results
 set BASE_REPORT_DIR=C:\JMeterTests\reports
+
+REM --- CHECK FOR ARGUMENT ---
+if "%~1"=="" (
+    echo Usage: %~nx0 "FullPathToTestPlan.jmx"
+    echo Example: %~nx0 "C:\JMeterTests\job_app_test.jmx"
+    exit /b 1
+)
+
+set "TEST_PLAN=%~1"
 
 REM --- GET A LOCALE-INDEPENDENT TIMESTAMP (dd-MM-yyyy_HHmm) USING POWERSHELL ---
 for /f "usebackq delims=" %%I in (`powershell -NoProfile -Command "Get-Date -Format 'dd-MM-yyyy_HHmm'"`) do set "RUN_ID=%%I"
